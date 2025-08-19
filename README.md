@@ -52,7 +52,7 @@ A full-stack platform for real-time energy market analytics, AI-powered bid sugg
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/virtual-energy-trading-platform.git
+git clone https://github.com/tarunpinnem/Cvector_Virtual-Energy-Trading-Simulator
 cd virtual-energy-trading-platform
 ```
 
@@ -67,9 +67,8 @@ cd virtual-energy-trading-platform
   Copy `.env` and set your `DATABASE_URL` and `GRIDSTATUS_API_KEY`.
 
 - **Start backend server**:
-  ```sh
-  uvicorn enhanced_main:app --reload
-  ```
+  cd backend
+  python kafka_main.py
 
 ### 3. Frontend Setup
 
