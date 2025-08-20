@@ -123,7 +123,3 @@ MIT License
 - [React](https://react.dev/), [FastAPI](https://fastapi.tiangolo.com/), [TimescaleDB](https://www.timescale.com/), [Kafka](https://kafka.apache.org/)
 
 ---
-
-## Screenshots
-
-> Add screenshots of the dashboard, bid suggestions,
