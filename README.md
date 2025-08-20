@@ -93,6 +93,13 @@ cd virtual-energy-trading-platform
 - See [grid_io_integration_demo.ipynb](grid_io_integration_demo.ipynb) for API usage examples.
 
 ---
+## ML-Powered Smart Suggestions
+The platform features an advanced AI-driven suggestion system that provides intelligent trading recommendations:
+### Machine Learning Models
+- **Linear Regression**: Uses least squares method for trend-based price predictions
+- **Polynomial Regression**: 2nd-degree polynomial fitting for complex price patterns
+- **Automatic Model Selection**: Dynamically chooses the best-performing model based on R² scores
+- **Real-time Adaptation**: Models retrain automatically as new market data arrives
 
 ## AI & Analytics
 
