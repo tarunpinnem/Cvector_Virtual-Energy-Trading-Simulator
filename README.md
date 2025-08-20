@@ -1,4 +1,4 @@
-# ⚡ Virtual Energy Trading Platform
+#  Virtual Energy Trading Platform
 
 A full-stack platform for real-time energy market analytics, AI-powered bid suggestions, and portfolio management, integrating with [GridStatus.io](https://gridstatus.io/) for live electricity market data.
 
