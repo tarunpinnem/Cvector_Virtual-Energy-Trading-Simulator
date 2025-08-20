@@ -58,6 +58,10 @@ app = FastAPI(
     version="3.0.0",
 )
 
+# Trading configuration constants
+MAX_BIDS_PER_HOUR = 10
+DAY_AHEAD_CUTOFF_HOUR = 11  # 11 AM cutoff
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -1106,6 +1110,15 @@ async def handle_bids(request: Request):
         # Handle array of bids (bulk save)
         if isinstance(data, list):
             print(f"📊 Received bids data: {data}")
+            
+            # Validate position limits per hour slot
+            hour_bid_counts = {}
+            for bid in data:
+                hour = bid.get("hour", 0)
+                hour_bid_counts[hour] = hour_bid_counts.get(hour, 0) + 1
+                if hour_bid_counts[hour] > MAX_BIDS_PER_HOUR:
+                    return {"error": f"Maximum {MAX_BIDS_PER_HOUR} bids per hour slot allowed. Hour {hour} has {hour_bid_counts[hour]} bids."}, 400
+            
             user_bids.clear()
             user_bids.extend(data)
             
@@ -1120,6 +1133,17 @@ async def handle_bids(request: Request):
         elif isinstance(data, dict):
             # Check if it's a new bid submission (has basic fields but no id)
             if "hour" in data and "action" in data and "price" in data and "quantity" in data and "id" not in data:
+                # Validate bid timing (must be before 11 AM)
+                current_time = datetime.now()
+                if current_time.hour >= DAY_AHEAD_CUTOFF_HOUR:
+                    return {"error": "Day-ahead bids must be submitted before 11:00 AM"}, 400
+                
+                # Validate position limits for this hour slot
+                hour = data.get("hour")
+                current_hour_bids = len([bid for bid in user_bids if bid.get("hour") == hour])
+                if current_hour_bids >= MAX_BIDS_PER_HOUR:
+                    return {"error": f"Maximum {MAX_BIDS_PER_HOUR} bids per hour slot allowed. Hour {hour} already has {current_hour_bids} bids."}, 400
+                
                 # Create new bid
                 new_bid = {
                     "id": f"bid_{int(datetime.now().timestamp() * 1000)}",
