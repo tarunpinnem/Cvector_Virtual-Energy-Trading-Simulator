@@ -20,7 +20,6 @@ A full-stack platform for real-time energy market analytics, AI-powered bid sugg
 ```
 .
 ├── backend/
-│   ├── enhanced_main.py         # FastAPI backend with enhanced endpoints
 │   ├── kafka_main.py            # Kafka consumer/producer logic
 │   ├── kafka_streaming_service.py
 │   ├── postgres_service.py      # Postgres/TimescaleDB integration
@@ -35,7 +34,6 @@ A full-stack platform for real-time energy market analytics, AI-powered bid sugg
 │   │   ├── Analytics.jsx        # Analytics dashboard
 │   │   ├── AdvancedBidEngine.js # Advanced AI/ML logic
 │   │   ├── QuickMLBidEngine.js  # ML model integration
-│   │   └── ...                  # Other components and pages
 │   ├── INTEGRATION_GUIDE.md     # Frontend integration instructions
 │   ├── index.html
 │   ├── package.json
@@ -105,17 +103,7 @@ cd virtual-energy-trading-platform
 
 ---
 
-## Customization
 
-- See [frontend/INTEGRATION_GUIDE.md](frontend/INTEGRATION_GUIDE.md) for instructions on customizing analytics, bid logic, and UI.
-
----
-
-## License
-
-MIT License
-
----
 
 ## Acknowledgements
 
